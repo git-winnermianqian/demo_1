@@ -12,20 +12,16 @@ A use-case of measuring air quality with sensors around a factory to showcase th
 
 2. 变量与接口
 
-sender端：
+- sender端：
+  - 需要传输的数据变量名为 outgoing_data
+  - outgoing_data 通过函数update更新
+  - update_interval 为更新频率，单位为秒
+  - receiver 的地址和端口号（本地调试无需修改）
+  - HOST = "127.0.0.1" 
+  - PORT = 65432
 
-需要传输的数据变量名为 outgoing_data
-
-outgoing_data 通过函数update更新
-
-update_interval 为更新频率，单位为秒
-
-receiver 的地址和端口号（本地调试无需修改）
-HOST = "127.0.0.1" 
-PORT = 65432
-
-receiver端：
-通过pollutions = pickle.loads(data) 将传输的数据，解包变为原来的数据。
+- receiver端：
+  - 通过pollutions = pickle.loads(data) 将传输的数据，解包变为原来的数据。
 
 
 ## 使用方法
