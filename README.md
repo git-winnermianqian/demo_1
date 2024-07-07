@@ -33,7 +33,7 @@ receiver端：
 1. Clone this repository
 
 ```bash
-git clone https://github.com/Avaiga/demo-realtime-pollution.git
+git clone https://github.com/git-winnermianqian/demo_1.git
 ```
 
 2. Install taipy
@@ -60,4 +60,5 @@ python sender.py
 
 This will send data to the dashboard.
 
-
+p.s.
+from https://github.com/Avaiga/demo-realtime-pollution.git
