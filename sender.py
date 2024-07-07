@@ -71,7 +71,7 @@ with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     print("Connected to server")
     while True:
         data = pickle.dumps(outgoing_data)
-        print(f"Sent Data: {outgoing_data}")
+        print(f"Sent Data: {outgoing_data[:5]}")
         print(len(data))
         s.sendall(data)
         outgoing_data = update()
