@@ -36,10 +36,7 @@ git clone https://github.com/Avaiga/demo-realtime-pollution.git
 ```bash
 pip install taipy
 ```
-or
-```bash
-conda install pip
-```
+
 
 3. Run the receiver script
 
