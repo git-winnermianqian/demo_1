@@ -134,15 +134,19 @@ def client_handler(gui: Gui, state_id_list: list):
     conn, _ = s.accept()
     while True:
         if data := conn.recv(1024 * 1024):
-            pollutions = pickle.loads(data)
-            print(f"Data received: {pollutions[:5]}")
-            if hasattr(gui, "_server") and state_id_list:
-                invoke_callback(
-                    gui,
-                    state_id_list[0],
-                    update_pollutions,
-                    [pollutions],
-                )
+            print(len(data))
+            try:
+                pollutions = pickle.loads(data)
+                print(f"Data received: {pollutions[:5]}")
+                if hasattr(gui, "_server") and state_id_list:
+                    invoke_callback(
+                        gui,
+                        state_id_list[0],
+                        update_pollutions,
+                        [pollutions],
+                    )
+            except pickle.UnpicklingError:
+                print("Failed to unpickle data")
         else:
             print("Connection closed")
             break

@@ -8,6 +8,8 @@ import numpy as np
 
 HOST = "127.0.0.1"
 PORT = 65432
+global update_interval
+update_interval = 5
 
 init_lat = 49.247
 init_long = 1.377
@@ -46,13 +48,13 @@ def pollution(lat: float, long: float):
 
 lats = []
 longs = []
-pollutions = []
+outgoing_data = []
 
 for lat in lats_unique:
     for long in longs_unique:
         lats.append(lat)
         longs.append(long)
-        pollutions.append(pollution(lat, long))
+        outgoing_data.append(pollution(lat, long))
 
 
 def update():
@@ -60,16 +62,18 @@ def update():
     Update the pollution levels
     """
     for i, _ in enumerate(lats):
-        pollutions[i] = pollution(lats[i], longs[i])
-    return pollutions
+        outgoing_data[i] = pollution(lats[i], longs[i])
+    return outgoing_data
 
 
 with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
     s.connect((HOST, PORT))
+    print("Connected to server")
     while True:
-        data = pickle.dumps(pollutions)
+        data = pickle.dumps(outgoing_data)
+        print(f"Sent Data: {outgoing_data}")
+        print(len(data))
         s.sendall(data)
-        print(f"Sent Data: {pollutions[:5]}")
-        pollutions = update()
-        countdown += 5
-        time.sleep(5)
+        outgoing_data = update()
+        countdown += update_interval
+        time.sleep(update_interval)
