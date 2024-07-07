@@ -22,7 +22,7 @@ receiver 的地址和端口号（本地调试无需修改）
 HOST = "127.0.0.1" 
 PORT = 65432
 
-## How to use
+## 使用方法
 
 1. Clone this repository
 
@@ -30,11 +30,15 @@ PORT = 65432
 git clone https://github.com/Avaiga/demo-realtime-pollution.git
 ```
 
-2. Install requirements
+2. Install taipy
 
 
 ```bash
-pip install -r requirements.txt
+pip install taipy
+```
+or
+```bash
+conda install pip
 ```
 
 3. Run the receiver script
@@ -43,7 +47,7 @@ pip install -r requirements.txt
 python receiver.py
 ```
 
-This should open a dashboard in your browser.
+Open th dashboard in your browser. http://127.0.0.1:5000
 
 4. Run the sender script
 
